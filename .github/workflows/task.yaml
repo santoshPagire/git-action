@@ -8,5 +8,5 @@ jobs:
 
   reusable_workflow_with_approval:
     needs: reusable_workflow_without_approval
-    uses: Production/santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main
+    uses: Production/git-action/.github/workflows/sample_workflow.yaml@main
    
