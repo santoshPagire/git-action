@@ -1,0 +1,9 @@
+name: reusable workflow
+on:
+    workflow_dispatch:
+
+jobs:
+    reusable_workflow:
+        uses: ./.github/workflows/variable_pref.yaml
+        secrets: inherit
+
