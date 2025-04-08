@@ -6,14 +6,7 @@ jobs:
   reusable_workflow_without_approval:
     uses: santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main
 
-  approval:
-    needs: reusable_workflow_without_approval
-    environment: Production
-    runs-on: ubuntu-latest
-    steps:
-      - name: Wait for approval
-        run: echo "Approval received"
-
   reusable_workflow_with_approval:
-    needs: approval
-    uses: santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main
+    needs: reusable_workflow_without_approval
+    uses: Production/santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main
+   
