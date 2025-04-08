@@ -1,19 +1,9 @@
-name: Sample Reusable Workflow
-
+name: Sample Workflow
 on:
   workflow_call:  
-    inputs:
-      example_input:
-        required: false
-        type: string
-
 jobs:
   sample_job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: print msg
-        run: echo "Reusable workflow executed"
-
+      - name: sample step
+        run: echo "Hello from reusable workflow"
