@@ -1,26 +1,24 @@
-name: task workflow
+name: Task Workflow
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-    reusable_workflow_without_approval:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v2
+  reusable_workflow_without_approval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-            - name: run reusable workflow
-              uses: santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main
+      - name: Run reusable workflow 
+        uses: santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main 
 
-    reusable_workflow_with_approval:
-        runs-on: ubuntu-latest
-        needs: reusable_workflow_without_approval
-        environment: Production
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v2
+  reusable_workflow_with_approval:
+    runs-on: ubuntu-latest
+    needs: reusable_workflow_without_approval
+    environment: Production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-            - name: run reusable workflow
-              uses: santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main
-
-    
+      - name: Run reusable workflow (with approval)
+        uses: santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main  
