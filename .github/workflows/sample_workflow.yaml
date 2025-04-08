@@ -1,6 +1,11 @@
 name: Sample Workflow
 on:
   workflow_call:  
+    inputs:
+     environment:
+      required: true
+      type: string
+ 
 jobs:
   sample_job:
     runs-on: ubuntu-latest  
