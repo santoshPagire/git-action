@@ -6,4 +6,9 @@ jobs:
     reusable_workflow:
         uses: ./.github/workflows/variable_pref.yaml
         secrets: inherit
-
+    
+    test_msg_from_current_job:
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Print a message
+              run: echo "This message is from current workflow"
