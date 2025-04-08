@@ -5,7 +5,7 @@ on:
 jobs:
   sample_job:
     runs-on: ubuntu-latest 
-    environment: Production 
+    # environment: Production 
     steps:
       - name: sample step
         run: echo "Hello from reusable workflow"
