@@ -1,4 +1,4 @@
-name: reusable workflow
+name: task workflow
 on:
     workflow_dispatch:
 
@@ -7,6 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             -  uses: ./.github/workflows/sample_workflow.yaml
+               secrets: inherit
 
     reusable_workflow_with_approval:
         runs-on: ubuntu-latest
@@ -14,7 +15,7 @@ jobs:
         environment: Production
         steps:
             -  uses: ./.github/workflows/sample_workflow.yaml
-
+               secrets: inherit
 
 
     
