@@ -13,6 +13,8 @@ on:
 jobs:
     prepare-matrix:
         runs-on: ubuntu-latest
+        outputs:
+            matrix-arrays: ${{ steps.matrix-array.outputs.result }}
         steps:
             - uses: actions/github-script@v6
               id: matrix-array
@@ -20,7 +22,7 @@ jobs:
                 script: "return {os: context.payload.inputs['os'].split(','), 'node-version': context.payload.inputs['node-version'].split(',')}"
                 result-encoding: json
             - run: echo '${{ steps.matrix-array.outputs.result }}'
-            
+
             - run: echo "username=admin" >> $GITHUB_OUTPUT
               id : step-1
             - run: echo "dbname=test" >> $GITHUB_OUTPUT
@@ -28,15 +30,20 @@ jobs:
             - run:
                 echo '${{ steps.step-1.outputs.username }}'
                 echo '${{ steps.step-2.outputs.dbname }}'
-    # node-matrix:
-    #     strategy:
-    #         matrix:
-    #             os: [ununtu-latest]
-    #             node-version: [14, 15]
+    node-matrix:
+        needs: prepare-matrix
+        strategy:
+            matrix:
+                os: ${{ fromJson(needs.prepare-matrix.outputs.matrix-arrays).os }}
+                node-version: ${{ fromJson(needs.prepare-matrix.outputs.matrix-arrays).node-version}}
 
-    #     runs-on: ${{ matrix.os }}
-    #     steps:
-    #         - run: node -v
+        runs-on: ${{ matrix.os }}
+        steps:
+            - run: node -v
+            - uses: actions/setup-node@v3
+              with: 
+                node-version: ${{ matrix.node-version }}
+            - run: node -v
   
     
 
