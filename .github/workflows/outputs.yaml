@@ -1,0 +1,33 @@
+name: Output
+on:
+    workflow_dispatch:
+        inputs:
+            os:
+                description: Operating system
+                default: "ubuntu-latest"
+                type: string
+jobs:
+    prepare-matrix:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "username=admin" >> $GITHUB_OUTPUT
+              id : step-1
+            - run: echo "dbname=test" >> $GITHUB_OUTPUT
+              id : step-2
+            - run:
+                echo '${{ steps.step-1.outputs.username }}'
+                echo '${{ steps.step-2.outputs.dbname }}'
+    node-matrix:
+        strategy:
+            matrix:
+                os: [ununtu-latest]
+                node-version: [14, 15]
+
+        runs-on: ${{ matrix.os }}
+        steps:
+            - run: node -v
+  
+    
+
+
+
