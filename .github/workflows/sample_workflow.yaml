@@ -1,6 +1,10 @@
 name: Sample Workflow
 on:
   workflow_call:  
+    inputs:
+      environment:
+        required: false
+        type: string
 
 jobs:
   sample_job:
