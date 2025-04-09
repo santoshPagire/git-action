@@ -11,8 +11,8 @@ jobs:
 
   reusable_workflow_with_approval:
     needs: reusable_workflow_without_approval
-    with:
-     environment: Production
     uses: santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main
-
+    with:
+      environment: Production
+    environment: Production
           
