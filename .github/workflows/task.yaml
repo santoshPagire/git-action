@@ -12,14 +12,9 @@ jobs:
   reusable_workflow_with_approval:
     needs: reusable_workflow_without_approval
     runs-on: ubuntu-latest
-    environment: 
+    environment:
         name: Production
-    steps:
-        - name: checkout
-          uses: actions/checkout@v2
-          
-        - name: call
-          uses: santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main
-          with:
-            environment: "Production"
+    uses: santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main
+    with:
+      environment: "Production"
           
