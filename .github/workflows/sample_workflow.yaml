@@ -5,7 +5,10 @@ on:
 jobs:
   sample_job:
     runs-on: ubuntu-latest 
-    # environment: Production 
+    # environment: ${{ vars.ENV }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
       - name: sample step
         run: echo "Hello from reusable workflow"
