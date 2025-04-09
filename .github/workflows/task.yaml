@@ -11,7 +11,7 @@ jobs:
 
   reusable_workflow_with_approval:
     needs: reusable_workflow_without_approval
-    uses: ./.github/workflows/sample_workflow.yaml@main
+    uses: santoshPagire/git-action/.github/workflows/sample_workflow.yaml@main
     with:
       environment: Production
     secrets: inherit
